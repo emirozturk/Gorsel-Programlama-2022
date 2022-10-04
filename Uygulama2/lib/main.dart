@@ -1,83 +1,78 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Uygulama2());
+  runApp(const Uygulama());
 }
 
-class Uygulama2 extends StatelessWidget {
-  const Uygulama2({super.key});
+class Uygulama extends StatelessWidget {
+  const Uygulama({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            width: 250,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  color: Colors.amber,
-                  padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    "Deneme",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Times New Roman",
-                      fontSize: 52,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-                const Text(
-                  "Güzel bir denemeydi",
-                  style: TextStyle(
-                    backgroundColor: Colors.greenAccent,
-                    color: Colors.white,
-                    fontFamily: "Times New Roman",
-                    fontSize: 24,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        child: const Text("Sol"),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        child: const Text("Sağ"),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("Link gibi"),
-                ),
-                IconButton(
-                  onPressed: () {
-                    print("Clicked");
-                  },
-                  icon: const Icon(
-                    Icons.attribution,
-                    color: Colors.blue,
-                    size: 36,
-                  ),
-                ),
-              ],
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Meraba",
+              style: TextStyle(
+                fontSize: 48,
+                color: Colors.purple,
+                backgroundColor: Colors.amberAccent,
+                fontWeight: FontWeight.w100,
+              ),
             ),
-          ),
+            const Text(
+              "Güzel bir gün diliyorum",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.purpleAccent,
+                backgroundColor: Colors.amber,
+                fontWeight: FontWeight.w100,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: Colors.greenAccent,
+                border: Border.all(
+                  color: Colors.green,
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("İptal"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("İleri"),
+                  )
+                ],
+              ),
+            ),
+            TextButton(
+              child: const Text(
+                "Link",
+                style: TextStyle(fontSize: 24),
+              ),
+              onPressed: () {
+                print("Tıklandı2");
+              },
+            ),
+            Container(
+              margin: EdgeInsets.all(15),
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.search),
+              ),
+            )
+          ],
         ),
       ),
     );
