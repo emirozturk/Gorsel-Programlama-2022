@@ -1,0 +1,39 @@
+import 'package:sqflite/sqflite.dart';
+
+import 'kisi.dart';
+
+class DbHelper {
+  static Future<Database> open() {
+    return openDatabase(
+      "sozler.db",
+      version: 1,
+      onCreate: (db, version) => db.execute(
+        "CREATE TABLE kisiler(id INTEGER PRIMARY KEY AUTOINCREMENT,  ad TEXT NOT NULL, soz TEXT NOT NULL)",
+      ),
+    );
+  }
+
+  static Future<int> ekle(Kisi eklenecek) async {
+    var db = await open();
+    return db.insert("kisiler", eklenecek.toMap());
+  }
+
+  static Future<void> sil(int id) async {
+    var db = await open();
+    db.delete("kisiler", where: "id=?", whereArgs: [id]);
+  }
+
+  static Future<int> update(Kisi kisi) async {
+    var db = await open();
+    return db.update("kisiler", kisi.toMap(),
+        where: "id=?",
+        whereArgs: [kisi.id],
+        conflictAlgorithm: ConflictAlgorithm.ignore);
+  }
+
+  static Future<List<Kisi>> getAll() async {
+    var db = await open();
+    var kayitlar = await db.query("kisiler");
+    return kayitlar.map((e) => Kisi.fromMap(e)).toList();
+  }
+}
