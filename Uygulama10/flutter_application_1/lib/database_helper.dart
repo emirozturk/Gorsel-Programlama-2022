@@ -1,16 +1,15 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'kisi.dart';
 
 class DbHelper {
-  static Future<Database> open() {
-    return openDatabase(
-      "sozler.db",
-      version: 1,
-      onCreate: (db, version) => db.execute(
-        "CREATE TABLE kisiler(id INTEGER PRIMARY KEY AUTOINCREMENT,  ad TEXT NOT NULL, soz TEXT NOT NULL)",
-      ),
+  static Future<Database> open() async {
+    var db = await databaseFactoryFfi.openDatabase("sozler.db");
+    await db.execute(
+      "CREATE TABLE if not exists kisiler(id INTEGER PRIMARY KEY AUTOINCREMENT,  ad TEXT NOT NULL, soz TEXT NOT NULL)",
     );
+    return db;
   }
 
   static Future<int> ekle(Kisi eklenecek) async {
